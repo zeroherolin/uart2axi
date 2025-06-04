@@ -91,24 +91,15 @@ module uart2axi_wrapper #(parameter CLK=50_000_000, BAUDRATE=115200)
         .r_data(tx_data)
     );
 
-    uart_fifo u_fifo_rx (
-        .clk(clk),         // input wire clk
-        .srst(~rst_n),     // input wire srst
-        .din(rx_data),     // input wire [7 : 0] din
-        .wr_en(rx_done),   // input wire wr_en
-        .rd_en(uart_rd),   // input wire rd_en
-        .dout(uart_rdata), // output wire [7 : 0] dout
-        .full(rx_full),    // output wire full
-        .empty(rx_empty)   // output wire empty
-    );
-
-    uart_rx u_uart_rx (
+    sync_fifo #(.DWIDTH(8), .AWIDTH(13)) u_fifo_rx (
         .clk(clk),
         .resetn(rst_n),
-        .b_tick(b_tick),
-        .rx(uart_rx),
-        .rx_done(rx_done),
-        .dout(rx_data)
+        .rd(uart_rd),
+        .wr(rx_done),
+        .w_data(rx_data),
+        .empty(rx_empty),
+        .full(rx_full),
+        .r_data(uart_rdata)
     );
 
     uart_tx u_uart_tx (
@@ -119,6 +110,15 @@ module uart2axi_wrapper #(parameter CLK=50_000_000, BAUDRATE=115200)
         .d_in(tx_data),
         .tx_done(tx_done),
         .tx(uart_tx)
+    );
+
+    uart_rx u_uart_rx (
+        .clk(clk),
+        .resetn(rst_n),
+        .b_tick(b_tick),
+        .rx(uart_rx),
+        .rx_done(rx_done),
+        .dout(rx_data)
     );
 
     uart2axi u_uart2axi (

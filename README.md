@@ -1,19 +1,19 @@
-# Getting Started
+# UART2AXI: A Small and Beautiful AXI Debugging Tool
 
-## Flow
+UART2AXI is a lightweight debugging tool that bridges UART and AXI communication. It efficiently converts UART signals to AXI protocol, enabling easy integration with various FPGA platforms. This tool allows developers to test and verify AXI-based designs through simple read/write operations, making hardware debugging more accessible and efficient. Implemented in Verilog without vendor-specific IPs, it supports all FPGA platforms with sufficient resources.
+
+UART2AXI是一款轻量级调试工具，可桥接UART和AXI通信。它能够高效地将UART信号转换为AXI协议，从而轻松与各种FPGA平台集成。该工具允许开发人员通过简单的读写操作来测试和验证基于AXI的设计，从而更轻松地进行硬件调试。它使用Verilog实现，无需特定供应商的IP，支持所有资源充足的FPGA平台。
 
 <a href="assets/flow.png"><img width=900 src="assets/flow.png"/></a>
 
-## Practical Video
+## Getting Started
 
-[视频](assets/test.mp4)
-
-## Requirements
+### Requirements
 
 - 任何FPGA软硬件平台（已提供verilog明码，不含任何vendor-specific ip，支持所有FPGA平台，需资源足够）
 - UART上位机软件，如Windows平台的[XCOM_V2.2.exe](assets/XCOM_V2.2.exe)（注意必须将收发模式设为16进制表示）
 
-## Synthesis
+### Synthesis
 
 将全部[verilog_code](verilog_code)拷贝至工程目录
 
@@ -75,7 +75,7 @@
 
 AXI从模块可以是AXI-MIG-DDR或其他AXI4从模块
 
-## UART Read AXI
+### UART Read AXI
 
 - 格式（16进制）
 
@@ -95,7 +95,7 @@ UART上位机发送```00 00 00 00 AA 07```
 
 发送完毕，UART上位机将接收到FPGA返回的读数据
 
-## UART Write AXI
+### UART Write AXI
 
 - 格式（16进制）
 
@@ -117,6 +117,10 @@ UART上位机发送```01 00 00 00 AB 07 00 00 00 00 11 11 11 11 22 22 22 22 33 3
 
 发送完毕，UART上位机将接收到FPGA返回的写数据（与[WDATA]一致）
 
-## 其他说明
+### Practical Video
+
+[视频](assets/test.mp4)
+
+### 其他说明
 
 - 部分源码采用Vitis HLS 2022.2编译，见[hls_src](hls_src)

@@ -4,7 +4,7 @@ UART2AXI is a lightweight debugging tool that bridges UART and AXI communication
 
 UART2AXI是一款轻量级调试工具，可桥接UART和AXI通信。它能够高效地将UART信号转换为AXI协议，从而轻松与各种FPGA平台集成。该工具允许开发人员通过简单的读写操作来测试和验证基于AXI的设计，从而更轻松地进行硬件调试。它使用Verilog实现，无需特定供应商的IP，支持所有资源充足的FPGA平台。
 
-<a href="assets/flow.png"><img width=900 src="assets/flow.png"/></a>
+<a href="assets/flow.png"><img width=600 src="assets/flow.png"/></a>
 
 ## Getting Started
 
